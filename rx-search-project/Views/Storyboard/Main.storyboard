@@ -94,6 +94,41 @@
             </objects>
             <point key="canvasLocation" x="222" y="100"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="yxr-ka-Yjf">
+            <objects>
+                <viewController id="DW1-im-fJS" customClass="ProfileViewController" customModule="rx_search_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D88-go-pGW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-bS-SIy">
+                                <rect key="frame" x="0.0" y="138" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ngd-0L-Drr"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="LogOut"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="asA-VR-cYn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KMn-bS-SIy" firstAttribute="leading" secondItem="asA-VR-cYn" secondAttribute="leading" id="Mfe-GC-pdh"/>
+                            <constraint firstItem="asA-VR-cYn" firstAttribute="trailing" secondItem="KMn-bS-SIy" secondAttribute="trailing" id="hn6-ax-qpv"/>
+                            <constraint firstItem="KMn-bS-SIy" firstAttribute="top" secondItem="asA-VR-cYn" secondAttribute="top" constant="50" id="xfA-rd-eiJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dhc-hK-mbr"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="KMn-bS-SIy" id="ki2-mb-s6b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cp1-cG-cBj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053" y="108"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xjk-k5-eKt">
             <objects>
@@ -105,6 +140,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="KLP-6C-61v" kind="relationship" relationship="viewControllers" id="sw0-Ht-AFr"/>
+                        <segue destination="qUI-ar-jjl" kind="relationship" relationship="viewControllers" id="HqA-gy-Dxo"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wW8-Zg-RxR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -136,9 +172,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Login">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="loginButton:" destination="pxF-bI-4Xz" eventType="touchUpInside" id="3Ml-NN-rFc"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rS-1g-89q">
                                 <rect key="frame" x="30" y="368" width="354" height="140"/>
@@ -159,7 +192,7 @@
                                             <constraint firstAttribute="height" constant="40" id="ItB-eC-bA9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -197,12 +230,30 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emailField" destination="t5m-Z3-DOF" id="vud-3U-3fz"/>
+                        <outlet property="loginButton" destination="ssh-2e-xGG" id="N5T-hX-l4p"/>
                         <outlet property="passwordField" destination="k12-Rq-Ux5" id="sMQ-vF-38u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkF-e4-WMS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741" y="-1254"/>
+            <point key="canvasLocation" x="2694" y="-1254"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="dYZ-Bu-Xl3">
+            <objects>
+                <navigationController id="qUI-ar-jjl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="DMU-p9-eV5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="78Y-rW-f5v">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DW1-im-fJS" kind="relationship" relationship="rootViewController" id="gh2-My-mEB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WP5-uf-b27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1045" y="-567"/>
         </scene>
         <!--Register-->
         <scene sceneID="6At-JQ-5sP">
@@ -238,7 +289,7 @@
                                             <constraint firstAttribute="height" constant="40" id="EbB-DM-Nuq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -263,9 +314,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Register">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="registerButton:" destination="gHp-zX-hmp" eventType="touchUpInside" id="m9d-Q5-Kr2"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FO9-MZ-cNr"/>
@@ -285,11 +333,12 @@
                     <connections>
                         <outlet property="emailField" destination="Bzg-y0-BTq" id="sdf-nq-sOr"/>
                         <outlet property="passwordField" destination="KwT-U7-dAp" id="kNe-0t-U44"/>
+                        <outlet property="registerButton" destination="dRA-en-HlC" id="uvp-QU-8GO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ymY-J5-gKj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2512" y="-1254"/>
+            <point key="canvasLocation" x="3465" y="-1254"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Ef-9t-8OW">
@@ -305,7 +354,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YN1-TT-G5i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="-1254"/>
+            <point key="canvasLocation" x="1972" y="-1254"/>
         </scene>
     </scenes>
     <resources>
@@ -323,6 +372,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

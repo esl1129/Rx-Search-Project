@@ -7,7 +7,8 @@
 
 import Foundation
 import FirebaseAuth
-class FirebaseAuthManager {
+
+class AuthManager {
     /// Register
     func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
@@ -20,8 +21,8 @@ class FirebaseAuthManager {
         }
     }
     /// Login
-    func signIn(email: String, pass: String, completionBlock: @escaping (_ success: Bool) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: pass) { (result, error) in
+    func signIn(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error, let _ = AuthErrorCode(rawValue: error._code) {
                 completionBlock(false)
             } else {
