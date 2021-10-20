@@ -2,24 +2,17 @@
 //  User.swift
 //  rx-search-project
 //
-//  Created by 임재욱 on 2021/10/19.
+//  Created by 임재욱 on 2021/10/20.
 //
 
 import Foundation
 
 struct User {
+    let name: String
+    let pageUrl: String
     
-    let email: String
-    let password: String
-    let favorite: [String]
-    var safeEmail: String{
-        let safeEmail = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-        return safeEmail
-    }
-    
-    init(_ email: String, _ password: String, _ favorite: [String]){
-        self.email = email
-        self.password = password
-        self.favorite = favorite
+    init(_ name: String, _ url: String){
+        self.name = name
+        self.pageUrl = url
     }
 }

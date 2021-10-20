@@ -28,12 +28,7 @@ extension ProfileViewController{
                 guard let strongSelf = self else { return }
                 do {
                     try Auth.auth().signOut()
-                    let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    guard let uvc = storyboard?.instantiateViewController(identifier: "LoginVC") else {
-                        return
-                    }
-                    uvc.modalPresentationStyle = .fullScreen
-                    strongSelf.present(uvc, animated: false)
+                    strongSelf.navigationController?.dismiss(animated: true)
                 } catch let signOutError as NSError {
                     print("Error signing out: %@", signOutError)
                 }

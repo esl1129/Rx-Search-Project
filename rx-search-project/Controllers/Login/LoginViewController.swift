@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     let disposeBag = DisposeBag()
-    let viewModel = UserViewModel()
+    let viewModel = LoginViewModel()
 }
 
 // MARK: - Init
@@ -29,8 +29,20 @@ extension LoginViewController{
         hideKeyboardWhenTappedAround()
         setUp()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Auth.auth().currentUser != nil{
+            let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
+                return
+            }
+            uvc.modalPresentationStyle = .fullScreen
+            present(uvc, animated: false)
+        }
+    }
 }
 
+// MARK: - Setup
 extension LoginViewController{
     func setUp() {
         // 1
@@ -58,7 +70,12 @@ extension LoginViewController{
                 guard let strongSelf = self else { return }
                 strongSelf.viewModel.loginUser(email, password){ success in
                     if success{
-                        strongSelf.navigationController?.dismiss(animated: true)
+                        let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
+                            return
+                        }
+                        uvc.modalPresentationStyle = .fullScreen
+                        strongSelf.present(uvc, animated: false)
                     }else{
                         print("LoginViewController: Failed to Login")
                         

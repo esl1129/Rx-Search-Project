@@ -1,45 +1,29 @@
 //
-//  ViewController.swift
-//  searchProject
+//  DetailFollowViewController.swift
+//  rx-search-project
 //
-//  Created by 임재욱 on 2021/10/16.
+//  Created by 임재욱 on 2021/10/19.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
-import FirebaseAuth
 
-class RepositoryViewController: UIViewController {
-    
+class FollowDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
     var viewModel = RepositoryViewModel()
+    var titleText: String = ""
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUp()
-    }
-}
-// MARK: - Setup
-extension RepositoryViewController{
-    func setUp(){
+        self.titleText = title!
+        
         viewModel.data
             .drive(tableView.rx.items(cellIdentifier: "repoCell")) { _, repository, cell in
                 cell.textLabel?.text = repository.repoName
                 cell.detailTextLabel?.text = repository.repoURL
             }
-            .disposed(by: disposeBag)
-        
-        searchBar.rx.text.orEmpty
-            .bind(to: viewModel.searchText)
-            .disposed(by: disposeBag)
-        
-        viewModel.data.asDriver()
-            .map { "\($0.count) Repositories" }
-            .drive(navigationItem.rx.title)
             .disposed(by: disposeBag)
         
         tableView.rx.modelSelected(Repository.self)
@@ -49,4 +33,3 @@ extension RepositoryViewController{
             }).disposed(by: disposeBag)
     }
 }
-

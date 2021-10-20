@@ -13,10 +13,12 @@ import RxCocoa
 
 class RegisterViewController: UIViewController {
     let disposeBag = DisposeBag()
-    let viewModel = UserViewModel()
+    let viewModel = LoginViewModel()
+    @IBOutlet weak var githubField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    
     
 }
 
@@ -55,11 +57,19 @@ extension RegisterViewController{
         
         registerButton.rx.tap.subscribe(
             onNext: { [weak self] _ in
-                guard let email = self?.emailField.text, let password = self?.passwordField.text else { return }
+                guard let githubId = self?.githubField.text,
+                    let email = self?.emailField.text,
+                        let password = self?.passwordField.text
+                else { return }
                 guard let strongSelf = self else { return }
-                strongSelf.viewModel.createUser(email, password){ success in
+                strongSelf.viewModel.createUser(githubId, email, password){ success in
                     if success{
-                        strongSelf.navigationController?.dismiss(animated: true)
+                        let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
+                            return
+                        }
+                        uvc.modalPresentationStyle = .fullScreen
+                        strongSelf.present(uvc, animated: false)
                     }else{
                         print("RegisterViewController: Failed to SingUp")
                         
