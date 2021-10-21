@@ -64,6 +64,9 @@ extension RegisterViewController{
                 guard let strongSelf = self else { return }
                 strongSelf.viewModel.createUser(githubId, email, password){ success in
                     if success{
+                        strongSelf.githubField.text = ""
+                        strongSelf.emailField.text = ""
+                        strongSelf.passwordField.text = ""
                         let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
                         guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
                             return

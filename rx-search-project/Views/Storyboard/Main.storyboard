@@ -12,7 +12,9 @@
         <scene sceneID="Wdd-2Y-vwp">
             <objects>
                 <navigationController id="TwE-uv-fAg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Follow" image="star" catalog="system" selectedImage="star.fill" id="D0m-6z-DKu"/>
+                    <tabBarItem key="tabBarItem" title="Follow" image="heart" catalog="system" selectedImage="heart.fill" id="D0m-6z-DKu">
+                        <color key="badgeColor" systemColor="systemPinkColor"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OMX-nf-a4c">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -150,7 +152,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="Enter GitHub ID (e.g., \&quot;esl1129\&quot;)" translatesAutoresizingMaskIntoConstraints="NO" id="D5r-Qn-lVv">
+                            <searchBar contentMode="redraw" placeholder="Enter GitHub ID (e.g. &quot;esl1129&quot;)" translatesAutoresizingMaskIntoConstraints="NO" id="D5r-Qn-lVv">
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -190,21 +192,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMn-bS-SIy">
-                                <rect key="frame" x="0.0" y="138" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="388" width="414" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ngd-0L-Drr"/>
+                                    <constraint firstAttribute="height" constant="50" id="R4E-nk-qVa"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="LogOut"/>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.grid.3x1.folder.fill.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="C3a-Ue-gjq">
+                                <rect key="frame" x="107" y="139" width="201.5" height="197.5"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="TkY-fI-ea2"/>
+                                    <constraint firstAttribute="height" constant="200" id="mL3-uO-PIT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="100"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="asA-VR-cYn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KMn-bS-SIy" firstAttribute="leading" secondItem="asA-VR-cYn" secondAttribute="leading" id="Mfe-GC-pdh"/>
-                            <constraint firstItem="asA-VR-cYn" firstAttribute="trailing" secondItem="KMn-bS-SIy" secondAttribute="trailing" id="hn6-ax-qpv"/>
-                            <constraint firstItem="KMn-bS-SIy" firstAttribute="top" secondItem="asA-VR-cYn" secondAttribute="top" constant="50" id="xfA-rd-eiJ"/>
+                            <constraint firstItem="C3a-Ue-gjq" firstAttribute="centerX" secondItem="D88-go-pGW" secondAttribute="centerX" id="6ir-NQ-sN6"/>
+                            <constraint firstItem="C3a-Ue-gjq" firstAttribute="top" secondItem="asA-VR-cYn" secondAttribute="top" constant="50" id="YXT-de-DqZ"/>
+                            <constraint firstItem="KMn-bS-SIy" firstAttribute="leading" secondItem="asA-VR-cYn" secondAttribute="leading" id="ZCS-QH-Z9l"/>
+                            <constraint firstItem="KMn-bS-SIy" firstAttribute="trailing" secondItem="asA-VR-cYn" secondAttribute="trailing" id="hFZ-IO-nxH"/>
+                            <constraint firstItem="KMn-bS-SIy" firstAttribute="top" secondItem="C3a-Ue-gjq" secondAttribute="bottom" constant="50" id="iZi-Pd-945"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dhc-hK-mbr"/>
@@ -311,7 +329,9 @@
         <scene sceneID="dYZ-Bu-Xl3">
             <objects>
                 <navigationController id="qUI-ar-jjl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="DMU-p9-eV5"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="DMU-p9-eV5">
+                        <color key="badgeColor" systemColor="systemYellowColor"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="cIk-sn-ni6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="78Y-rW-f5v">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -459,13 +479,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="launch" width="600" height="600"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="star" catalog="system" width="128" height="116"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="square.grid.3x1.folder.fill.badge.plus" catalog="system" width="128" height="91"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -478,8 +499,14 @@
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

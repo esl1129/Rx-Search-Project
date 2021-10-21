@@ -9,15 +9,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 import FirebaseAuth
+import RappleProgressHUD
+
 
 class FollowViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nameField: UITextField!
     let disposeBag = DisposeBag()
-    var viewModel = UserViewModel()
+    var viewModel = FollowViewModel()
+    let attributes = RappleActivityIndicatorView.attribute(style: RappleStyle.apple, tintColor: .white, screenBG: UIColor(white: 0.0, alpha: 0.5) ,thickness: 4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        RappleActivityIndicatorView.startAnimatingWithLabel("Loading...", attributes: attributes)
         setUp()
     }
 }
@@ -54,11 +58,12 @@ extension FollowViewController{
             .drive(navigationItem.rx.title)
             .disposed(by: disposeBag)
         
-        tableView.rx.modelSelected(User.self)
-            .subscribe(onNext: {user in
-                guard let url = URL(string: user.pageUrl) else { return }
+        tableView.rx.modelSelected(Follow.self)
+            .subscribe(onNext: {follow in
+                guard let url = URL(string: follow.pageUrl) else { return }
                 UIApplication.shared.open(url, options: [:])
             }).disposed(by: disposeBag)
+        RappleActivityIndicatorView.stopAnimation(completionIndicator: .success, completionLabel: "Completed", completionTimeout: 2.0)
     }
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct Follow {
     let name: String
     let pageUrl: String
     

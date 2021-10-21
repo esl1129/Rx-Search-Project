@@ -32,12 +32,7 @@ extension LoginViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser != nil{
-            let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
-            guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
-                return
-            }
-            uvc.modalPresentationStyle = .fullScreen
-            present(uvc, animated: false)
+            presetToMain()
         }
     }
 }
@@ -66,21 +61,27 @@ extension LoginViewController{
         // 5
         loginButton.rx.tap.subscribe(
             onNext: { [weak self] _ in
-                guard let email = self?.emailField.text, let password = self?.passwordField.text else { return }
                 guard let strongSelf = self else { return }
+                guard let email = strongSelf.emailField.text, let password = strongSelf.passwordField.text else { return }
                 strongSelf.viewModel.loginUser(email, password){ success in
                     if success{
-                        let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
-                        guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
-                            return
-                        }
-                        uvc.modalPresentationStyle = .fullScreen
-                        strongSelf.present(uvc, animated: false)
+                        strongSelf.presetToMain()
                     }else{
                         print("LoginViewController: Failed to Login")
                         
                     }
                 }
             }).disposed(by: disposeBag)
+    }
+}
+
+extension LoginViewController{
+    func presetToMain(){
+        let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let uvc = storyboard?.instantiateViewController(identifier: "MainVC") else {
+            return
+        }
+        uvc.modalPresentationStyle = .fullScreen
+        self.present(uvc, animated: false)
     }
 }

@@ -47,7 +47,7 @@ extension APIManager{
 
 // MARK: Load Followings By Id
 extension APIManager{
-    public func followingsBy(_ githubID: String) -> Observable<[User]> {
+    public func followingsBy(_ githubID: String) -> Observable<[Follow]> {
         guard !githubID.isEmpty, let url = URL(string: "https://api.github.com/users/\(githubID)/following") else {
             return Observable.just([])
         }
@@ -56,18 +56,18 @@ extension APIManager{
         //.catchErrorJustReturn([])
             .map(parseFollowing)
     }
-    public func parseFollowing(json: Any) -> [User] {
+    public func parseFollowing(json: Any) -> [Follow] {
         guard let items = json as? [[String: Any]]  else {
             return []
         }
-        var users = [User]()
+        var follows = [Follow]()
         items.forEach{
             guard let name = $0["login"] as? String,
                   let pageUrl = $0["html_url"] as? String else {
                       return
                   }
-            users.append(User(name, pageUrl))
+            follows.append(Follow(name, pageUrl))
         }
-        return users
+        return follows
     }
 }

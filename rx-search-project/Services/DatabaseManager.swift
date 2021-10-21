@@ -23,10 +23,6 @@ extension DatabaseManager{
         let safeEmail = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
-    public func makeEmailtoId(with email: String) -> String{
-        let safe = email.split(separator: "@")
-        return String(safe[0])
-    }
 }
 
 extension DatabaseManager{
@@ -60,15 +56,15 @@ extension DatabaseManager{
         })
     }
     
-    /// Get All Users in Firebase (for Conversation in NewConversationsViewController)
+    /// Get UserId in Firebase
     public func getUserId(with email: String, completion: @escaping (Result<String, Error>) -> Void){
         let safeEmail = safeEmail(with: email)
         database.child("users/\(safeEmail)").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [String: String] else{
+            guard let value = snapshot.value as? [String: String], let user_id = value["userId"] else{
                 completion(.failure(DatabaseErrors.failedToFetch))
                 return
             }
-            completion(.success(value["userId"]!))
+            completion(.success(user_id))
         })
     }
 }
